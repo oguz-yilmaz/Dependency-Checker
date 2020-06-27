@@ -1,0 +1,29 @@
+{
+  "name": "repo-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev ./index.ts",
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "latest-version": "^5.1.0",
+    "ts-node-dev": "^1.0.0-pre.49",
+    "typescript": "^3.9.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/supertest": "^2.0.8",
+    "jest": "^26.0.1",
+    "ts-jest": "^25.3.1"
+  }
+}
