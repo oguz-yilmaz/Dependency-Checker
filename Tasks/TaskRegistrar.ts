@@ -1,5 +1,4 @@
 import * as crypto from 'crypto';
-import fs from 'fs';
 import { Storage } from '../Storage/Storage';
 import { getTime, isEmptyObject } from '../helpers/helper';
 

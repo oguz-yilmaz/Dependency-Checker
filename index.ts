@@ -1,4 +1,3 @@
-import { Cli } from './IO/Input/Cli';
 import { Application } from './Application';
 import { FileStorage } from './Storage/File/FileStorage';
 import { TaskRegistrer } from './Tasks/TaskRegistrar';

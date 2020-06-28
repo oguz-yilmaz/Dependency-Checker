@@ -4,14 +4,11 @@ import { TaskRuntimeError } from '../errors/TaskRuntimeError';
 import { getTime } from '../helpers/helper';
 
 export function run() {
-  let storage = new FileStorage();
-
-  let res = storage.getData();
-
-  // const currentRegisteredTasks = res[getTime(Date.now())];
+  const storage = new FileStorage();
+  const res = storage.getData();
 
   try {
-    const currentRegisteredTasks = res['a63fc8c5d915e1f1sa40f40e6c7499863'];
+    const currentRegisteredTasks = res[getTime(Date.now())];
     for (const task of currentRegisteredTasks) {
       if (task.type === 'email') {
         const t = new SendEmailNotification();
