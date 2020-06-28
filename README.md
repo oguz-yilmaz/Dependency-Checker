@@ -13,8 +13,6 @@ $ npm start
 
 ## Running Tests
 
-`
-
 ```bash
 $ npm test
 ```
