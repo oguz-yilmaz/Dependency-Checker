@@ -1,4 +1,3 @@
-# Backend Case Study
 
 1. [Installation](#installation)
 2. [Running Tests](#running-tests)
