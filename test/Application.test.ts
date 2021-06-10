@@ -1,5 +1,5 @@
 import { FileStorage } from '../src/Storage/File/FileStorage';
-import { TaskRegistrer } from '../src/Tasks/TaskRegistrar';
+import { TaskRegistrar } from '../src/Tasks/TaskRegistrar';
 import { Application } from '../src/Application';
 import { Cli } from '../src/IO/Input/Cli';
 import { GitRegistry } from '../src/Registry/git/GitRegistry';
@@ -7,12 +7,12 @@ import { NodeParser } from '../src/RepoParser/NodeParser/NodeParser';
 
 describe('Initializing Config Options', () => {
     const storage = new FileStorage();
-    const taskRegistrar = new TaskRegistrer(storage);
+    const taskRegistrar = new TaskRegistrar(storage);
     const app = new Application(taskRegistrar);
 
     app.setOptions({
         input: 'cli',
-        registery: 'git',
+        registry: 'git',
         output: 'cli',
         config: 'package.json',
     });

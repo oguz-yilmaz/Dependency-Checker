@@ -2,7 +2,7 @@ import * as crypto from 'crypto';
 import { Storage } from '../Storage/Storage';
 import { getTime, isEmptyObject } from '../helpers/helper';
 
-export class TaskRegistrer {
+export class TaskRegistrar {
     storage: Storage;
     tasks: { [k: string]: any } = {};
 
@@ -20,7 +20,7 @@ export class TaskRegistrer {
             .update(getTime(timeToRun))
             .digest('hex');
 
-        const _data = {
+        const task = {
             type,
             data: JSON.stringify(data),
         };
@@ -29,7 +29,7 @@ export class TaskRegistrer {
             this.tasks[key] = [];
         }
 
-        this.tasks[key].push(_data);
+        this.tasks[key].push(task);
     }
 
     persist() {
