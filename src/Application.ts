@@ -1,21 +1,21 @@
-import { TaskRegistrar } from './Tasks/TaskRegistrar';
-import { GitRegistry } from './Registry/git/GitRegistry';
-import {Options, OptionsArguments} from "./types/Options";
-import {Factory} from "./Factories/Factory";
-import {Input} from "./IO/Input";
-import {Registry} from "./Registry/Registry";
-import {RepoParser} from "./RepoParser/RepoParser";
-import {Output} from "./IO/Output";
+import { TaskRegistrar } from './Tasks/TaskRegistrar'
+import { GitRegistry } from './Registry/git/GitRegistry'
+import {Options, OptionsArguments} from "./types/Options"
+import {Factory} from "./Factories/Factory"
+import {Input} from "./IO/Input"
+import {Registry} from "./Registry/Registry"
+import {RepoParser} from "./RepoParser/RepoParser"
+import {Output} from "./IO/Output"
 
-const registry = new GitRegistry();
+const registry = new GitRegistry()
 
 export class Application {
     input: Input
     registry: Registry
     parser: RepoParser
     output: Output
-    arguments: any;
-    result: any[] = [];
+    arguments: any
+    result: any[] = []
 
     constructor(private registrar: TaskRegistrar, private readonly options: OptionsArguments) {
         ({
@@ -25,7 +25,7 @@ export class Application {
             output: this.output,
         } = this.parseOptions())
 
-        this.arguments = this.input.parseInput();
+        this.arguments = this.input.parseInput()
     }
 
     print = (): () => void => (): void => this.output.print(this.result.join('\n'))
@@ -36,10 +36,10 @@ export class Application {
 
     async process() {
         for (const args of this.arguments.repos) {
-            this.result.push(await this.processSingle(args));
+            this.result.push(await this.processSingle(args))
 
-            this.registrar.registerTask('email', Date.now(), this.result);
-            this.registrar.persist();
+            this.registrar.registerTask('email', Date.now(), this.result)
+            this.registrar.persist()
         }
 
         return this
@@ -52,15 +52,15 @@ export class Application {
                 repoUser: args.repoUser,
             },
             registry
-        );
+        )
 
-        const outdatedPackages = await this.parser.parse();
+        const outdatedPackages = await this.parser.parse()
 
         return {
             emails: args.emails,
             repoUser: args.repoUser,
             repoName: args.repoName,
             outdatedPackages: outdatedPackages,
-        };
+        }
     }
 }

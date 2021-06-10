@@ -1,3 +1,3 @@
 export interface Output {
-    print(message: string): void;
+    print(message: string): void
 }

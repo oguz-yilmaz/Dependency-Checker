@@ -1,8 +1,8 @@
-import { Input } from '../Input';
+import { Input } from '../Input'
 
 export class Cli implements Input {
     parseInput() {
-        var myArgs = process.argv.slice(2);
+        var myArgs = process.argv.slice(2)
 
         return {
             repos: [
@@ -12,6 +12,6 @@ export class Cli implements Input {
                     emails: myArgs.slice(2, 4) ?? null,
                 },
             ],
-        };
+        }
     }
 }

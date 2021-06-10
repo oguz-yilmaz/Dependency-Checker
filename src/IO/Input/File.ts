@@ -1,4 +1,4 @@
-import { Input } from '../Input';
+import { Input } from '../Input'
 
 export class File implements Input {
     parseInput(path?: string) {
@@ -6,6 +6,6 @@ export class File implements Input {
             repos: [
                 { repoName: 'test', repoUser: 'user', emails: ['test@test.com'] },
             ],
-        };
+        }
     }
 }

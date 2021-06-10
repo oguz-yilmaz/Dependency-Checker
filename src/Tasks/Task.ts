@@ -1,3 +1,3 @@
 export interface Task {
-    execute(data: any): void;
+    execute(data: any): void
 }

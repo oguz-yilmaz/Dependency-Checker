@@ -1,10 +1,10 @@
-type Repo = { repoName: string; repoUser: string; emails: string[] }
+type Repo = { repoName: string repoUser: string emails: string[] }
 
 interface Arguments {
-    repos: Repo[];
+    repos: Repo[]
 }
 
 export interface Storage {
-    getData(): object;
-    persist(data: object): void;
+    getData(): object
+    persist(data: object): void
 }

@@ -1,4 +1,4 @@
-import {Output} from "../Output";
+import {Output} from "../Output"
 
 export class Cli implements Output {
     print(message: string): void {

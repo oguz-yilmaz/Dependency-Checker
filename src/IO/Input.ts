@@ -1,7 +1,7 @@
 interface Arguments {
-    repos: { repoName: string; repoUser: string; emails: string[] }[];
+    repos: { repoName: string repoUser: string emails: string[] }[]
 }
 
 export interface Input {
-    parseInput(): Arguments;
+    parseInput(): Arguments
 }
