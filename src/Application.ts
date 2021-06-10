@@ -1,32 +1,37 @@
-import { Cli } from './IO/Input/Cli';
-import { File } from './IO/Input/File';
-import { TaskRegistrer } from './Tasks/TaskRegistrar';
-import { NodeParser } from './RepoParser/NodeParser/NodeParser';
+import { TaskRegistrar } from './Tasks/TaskRegistrar';
 import { GitRegistry } from './Registry/git/GitRegistry';
-import { PhpParser } from './RepoParser/PhpParser/PhpParser';
-import { SubversionRegistry } from './Registry/subversion/SubversionRegistry';
+import {Options, OptionsArguments} from "./types/Options";
+import {Factory} from "./Factories/Factory";
+import {Input} from "./IO/Input";
+import {Registry} from "./Registry/Registry";
+import {RepoParser} from "./RepoParser/RepoParser";
+import {Output} from "./IO/Output";
 
 const registry = new GitRegistry();
 
 export class Application {
-    input: any;
-    registry: any;
-    parser: any;
+    input: Input
+    registry: Registry
+    parser: RepoParser
+    output: Output
     arguments: any;
-    registrar: any;
     result: any[] = [];
-    options: { [k: string]: any } = {};
 
-    constructor(registrar: TaskRegistrer, options?: object) {
-        this.factoryInput();
-        this.factoryParser();
-        this.factoryRegistry();
+    constructor(private registrar: TaskRegistrar, private readonly options: OptionsArguments) {
+        ({
+            input: this.input,
+            registry: this.registry,
+            parser: this.parser,
+            output: this.output,
+        } = this.parseOptions())
+
         this.arguments = this.input.parseInput();
-        this.registrar = registrar;
     }
 
-    setOptions(options: object) {
-        this.options = options;
+    print = (): () => void => (): void => this.output.print(this.result.join('\n'))
+
+    parseOptions(): Options {
+        return Factory.fromOptions(this.options)
     }
 
     async process() {
@@ -37,7 +42,7 @@ export class Application {
             this.registrar.persist();
         }
 
-        this.formatOutput();
+        return this
     }
 
     async processSingle(args: any) {
@@ -57,45 +62,5 @@ export class Application {
             repoName: args.repoName,
             outdatedPackages: outdatedPackages,
         };
-    }
-
-    factoryInput() {
-        switch (this.options.input) {
-            case 'file':
-                this.input = new File();
-                break;
-            default:
-                this.input = new Cli();
-        }
-    }
-
-    factoryParser() {
-        switch (this.options.config) {
-            case 'composer.json':
-                this.parser = new PhpParser();
-                break;
-            default:
-                this.parser = new NodeParser();
-        }
-    }
-
-    factoryRegistry() {
-        switch (this.options.registery) {
-            case 'subversion':
-                this.registry = new SubversionRegistry();
-                break;
-            default:
-                this.registry = new GitRegistry();
-        }
-    }
-
-    formatOutput(platform?: string) {
-        switch (this.options.output) {
-            case 'cli':
-                console.log(JSON.stringify(this.result));
-                break;
-            default:
-            //
-        }
     }
 }

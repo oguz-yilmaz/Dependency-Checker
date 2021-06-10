@@ -1,21 +1,20 @@
 import { Application } from './Application';
 import { FileStorage } from './Storage/File/FileStorage';
-import { TaskRegistrer } from './Tasks/TaskRegistrar';
+import { TaskRegistrar } from './Tasks/TaskRegistrar';
 
 const run = async () => {
     const storage = new FileStorage();
-    const taskRegistrar = new TaskRegistrer(storage);
+    const taskRegistrar = new TaskRegistrar(storage);
 
-    const app = new Application(taskRegistrar);
-
-    app.setOptions({
+    const app = new Application(taskRegistrar, {
         input: 'cli',
-        registery: 'git',
+        registry: 'git',
         output: 'cli',
-        config: 'package.json',
+        parser: 'package.json',
     });
 
-    await app.process();
+    const res = await app.process()
+    res.print()
 };
 
 try {
