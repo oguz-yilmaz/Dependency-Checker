@@ -1,6 +1,7 @@
-//todo
+type Repo = { repoName: string; repoUser: string; emails: string[] }
+
 interface Arguments {
-    repos: { repoName: string; repoUser: string; emails: string[] }[];
+    repos: Repo[];
 }
 
 export interface Storage {

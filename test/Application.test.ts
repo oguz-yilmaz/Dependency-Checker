@@ -1,9 +1,9 @@
-import { FileStorage } from '../Storage/File/FileStorage';
-import { TaskRegistrer } from '../Tasks/TaskRegistrar';
-import { Application } from '../Application';
-import { Cli } from '../IO/Input/Cli';
-import { GitRegistry } from '../Registry/git/GitRegistry';
-import { NodeParser } from '../RepoParser/NodeParser/NodeParser';
+import { FileStorage } from '../src/Storage/File/FileStorage';
+import { TaskRegistrer } from '../src/Tasks/TaskRegistrar';
+import { Application } from '../src/Application';
+import { Cli } from '../src/IO/Input/Cli';
+import { GitRegistry } from '../src/Registry/git/GitRegistry';
+import { NodeParser } from '../src/RepoParser/NodeParser/NodeParser';
 
 describe('Initializing Config Options', () => {
     const storage = new FileStorage();
